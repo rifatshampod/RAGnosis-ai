@@ -35,6 +35,42 @@ Starting with **Dell** devices, the system retrieves precise instructions from s
 6. **Evaluation** – Measure accuracy, citation coverage, and faithfulness.  
 7. **Web UI** – Minimal chat interface for public testing.
 
+## Project Directory
+
+``` 
+    ragnosis-ai/
+    ├─ data/
+    │  ├─ raw/                  # Original manuals (PDFs)
+    │  └─ processed/            # Extracted text + metadata (JSONL)
+    ├─ ingest/
+    │  ├─ pdf_to_text.py        # Extract text + headings from PDFs
+    │  ├─ chunker.py            # Section-preserving chunker
+    │  └─ build_index.py        # Build vector database (Chroma)
+    ├─ rag/
+    │  ├─ embeddings.py         # Embedding helpers
+    │  ├─ vectorstore.py        # Chroma/pgvector wrapper
+    │  ├─ retriever.py          # Hybrid BM25 + dense (+rerank)
+    │  ├─ prompt.py             # Prompt templates
+    │  └─ answerer.py           # Grounded Q&A w/ citations (JSON)
+    ├─ agent/
+    │  ├─ tools.py              # search_manual, summarize_steps
+    │  ├─ policy.py             # Guardrails & refusal policy
+    │  └─ agent.py              # Troubleshooting agent loop
+    ├─ api/
+    │  └─ main.py               # FastAPI endpoints (/chat, /search, /ingest)
+    ├─ ui/
+    │  └─ app.py                # Streamlit or minimal web UI
+    ├─ eval/
+    │  ├─ questions.jsonl       # Eval set with page refs
+    │  └─ run_eval.py           # RAG performance evaluation
+    ├─ tests/
+    │  └─ test_*.py             # Unit tests
+    ├─ .env.example
+    ├─ requirements.txt
+    ├─ README.md
+    └─ LICENSE
+```
+
 ---
 
 📘 _RAGnosis AI — turning static manuals into interactive repair intelligence._
