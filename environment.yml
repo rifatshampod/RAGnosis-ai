@@ -1,0 +1,15 @@
+name: ragnosis
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - pip
+  - pymupdf
+  - uvicorn
+  - fastapi
+  - pydantic
+  - pip:
+      - chromadb
+      - sentence-transformers
+      - openai
+      - tiktoken
+      # - torch --index-url https://download.pytorch.org/whl/cpu
