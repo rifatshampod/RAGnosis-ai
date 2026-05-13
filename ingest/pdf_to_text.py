@@ -64,21 +64,21 @@ def build_page_headings_from_toc(doc: "fitz.Document") -> Dict[int, List[str]]:
     Build a mapping of 1-based page number -> heading path using the document TOC.
     Returns empty dict if no TOC found.
     """
-    toc = doc.get_toc(simple=False)  # list of dicts: {"level": int, "title": str, "page": int, ...}
+    toc = doc.get_toc(simple=False)  # list of [level, title, page, dest_dict]
     if not toc:
         return {}
 
     # Sort by (page, level) to process in order
-    toc_sorted = sorted(toc, key=lambda e: (e.get("page", 1), e.get("level", 1)))
+    toc_sorted = sorted(toc, key=lambda e: (e[2], e[0]))
     page_to_headings: Dict[int, List[str]] = {}
     stack: List[str] = []  # current heading path
 
     # We will generate heading path for each page range until next TOC entry
     for idx, entry in enumerate(toc_sorted):
-        level = int(entry.get("level", 1))
-        title = normalize_whitespace(entry.get("title", "").strip())
-        start_page = max(1, int(entry.get("page", 1)))
-        end_page = int(toc_sorted[idx + 1].get("page", doc.page_count)) - 1 if idx + 1 < len(toc_sorted) else doc.page_count
+        level = int(entry[0])
+        title = normalize_whitespace(str(entry[1]).strip())
+        start_page = max(1, int(entry[2]))
+        end_page = int(toc_sorted[idx + 1][2]) - 1 if idx + 1 < len(toc_sorted) else doc.page_count
 
         # Maintain stack depth = level
         while len(stack) >= level:
