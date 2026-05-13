@@ -15,14 +15,14 @@ services:
     restart: unless-stopped
     environment:
       IS_PERSISTENT: "TRUE"
-      PERSIST_DIRECTORY: /chroma/chroma
+      PERSIST_DIRECTORY: /data
       ANONYMIZED_TELEMETRY: "FALSE"
     volumes:
-      - chroma_data:/chroma/chroma
+      - chroma_data:/data
     networks:
       - ragnosis_net
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8000/api/v1/heartbeat || exit 1"]
+      test: ["CMD", "bash", "-c", "echo > /dev/tcp/localhost/8000"]
       interval: 10s
       timeout: 5s
       retries: 5
