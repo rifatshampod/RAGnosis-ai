@@ -8,8 +8,11 @@ dependencies:
   - fastapi
   - pydantic
   - pip:
-      - chromadb
-      - sentence-transformers
-      - openai
-      - tiktoken
-      # - torch --index-url https://download.pytorch.org/whl/cpu
+      - chromadb>=0.5
+      - sentence-transformers>=2.7
+      - openai>=1.30
+      - tiktoken>=0.7
+      - python-dotenv>=1.0
+      - tqdm>=4.66
+      - streamlit>=1.35
+      - requests>=2.31

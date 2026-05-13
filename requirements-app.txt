@@ -1,0 +1,11 @@
+fastapi>=0.111
+uvicorn[standard]>=0.30
+pydantic>=2.7
+chromadb>=0.5
+sentence-transformers>=2.7
+openai>=1.30
+streamlit>=1.35
+tiktoken>=0.7
+python-dotenv>=1.0
+tqdm>=4.66
+requests>=2.31

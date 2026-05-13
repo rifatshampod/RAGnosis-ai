@@ -1,0 +1,3 @@
+# Main app dependencies — see requirements-app.txt for Docker
+# See requirements-ingest.txt for ingest pipeline Docker image
+-r requirements-app.txt
