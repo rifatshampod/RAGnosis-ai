@@ -21,4 +21,4 @@ CHUNKS_DIR: Path = Path(os.getenv("CHUNKS_DIR", "data/chunks"))
 
 MAX_CHUNK_TOKENS: int = 600
 OVERLAP_TOKENS: int = 50
-RELEVANCE_THRESHOLD: float = 1.2
+RELEVANCE_THRESHOLD: float = 0.75
